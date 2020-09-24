@@ -1,22 +1,23 @@
 #!/usr/bin/env python3
 
-# Userscript for qutebrowser which saves some text that can be retrieved with the key associated with it.
-# The texts are saved on a json in config dir by default
+"""
+Userscript for qutebrowser which saves some text that can be retrieved with the key associated with it.
+The texts are saved on a json in config dir by default
+"""
 
 import logging
 log = logging.getLogger(__name__)
 log.setLevel('DEBUG')
 
+############# Uncomment this line for debug log
+#log.addHandler(logging.FileHandler('qute-snippets.log'))
+
+from datetime import datetime
+log.debug('\nStarting execution in {}'.format(datetime.now()))
+
 import argparse
 import os
 import json
-from datetime import datetime
-
-
-############# Uncomment this line for debug log <<<<<<<<<<<<
-#log.addHandler(logging.FileHandler('qute-snippets.log'))
-
-log.debug('\nStarting execution in {}'.format(datetime.now()))
 
 SAVE_DIR = os.getenv('QUTE_CONFIG_DIR')
 
@@ -25,11 +26,35 @@ if not SAVE_DIR: SAVE_DIR = 'testdir'
 
 log.debug('SAVE_DIR: '+str(SAVE_DIR))
 
-argument_parser = argparse.ArgumentParser()
-argument_parser.add_argument('params', nargs='+')
+USAGE="""snippets.py [-h] [--set | --get] params
+
+This script save some text snippet to a keyword and paste it back when called with the same keyword.
+It's meant to be used with qutebrowser (see https://qutebrowser.org/).
+
+   To save a snippet to a certain keyword:
+      snippets.py --set <keyword> <text>
+
+   To paste a snippet bindded to a certain keyword:
+      snippets.py --get <keyword>
+
+   To use it with qutebrowser:
+      :spawn --userscript snippets.py [--set | --get] params
+
+I suggest that you make the following keybinds:
+
+   To save a snippet, i.e.:
+      :bind --mode insert <Ctrl+Alt+1> spawn --userscript snippets.py --set 1 {primary}
+
+   To paste a snippet, i.e.:
+      :bind --mode insert <Ctrl+1> spawn --userscript snippets.py --get 1"""
+
+EPILOG="""The snippets are saved on a json in the qutebrowser's configuration folder. For debug log, uncomment the respective line in source."""
+
+argument_parser = argparse.ArgumentParser(usage=USAGE, epilog=EPILOG)
+argument_parser.add_argument('params', nargs='+', help='<keyword> <text> to use set option or <keyword> to use get option')
 group = argument_parser.add_mutually_exclusive_group()
-group.add_argument('--set', '-s', action='store_true')
-group.add_argument('--get', '-g', action='store_true')
+group.add_argument('--set', '-s', action='store_true', help='set a text to a certain keyword')
+group.add_argument('--get', '-g', action='store_true', help='get a text saved to a keyword')
 
 
 def qute_paste_text(text):
