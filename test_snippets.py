@@ -27,7 +27,7 @@ class SnippetsTestCase(TestCase):
 class SetTextTest(SnippetsTestCase):
 
     def setUp(self) -> None:
-        self.register_file = 'testdir/qute-snippets.json'
+        self.register_file = 'testdir/snippets.json'
 
         self.fifo = 'testdir/QUTE_FIFO'
         os.environ['QUTE_FIFO'] = self.fifo
@@ -95,7 +95,7 @@ class SetTextTest(SnippetsTestCase):
 class GetTextTest(SnippetsTestCase):
 
     def setUp(self) -> None:
-        self.register_file = 'testdir/qute-snippets.json'
+        self.register_file = 'testdir/snippets.json'
 
     def tearDown(self) -> None:
         if os.path.isfile(self.register_file):
@@ -197,7 +197,7 @@ class QutePasteTextTest(SnippetsTestCase):
 class InterfaceTest(SnippetsTestCase):
 
     def setUp(self) -> None:
-        self.register_file = 'testdir/qute-snippets.json'
+        self.register_file = 'testdir/snippets.json'
         self.fifo = 'testdir/QUTE_FIFO'
         os.environ['QUTE_FIFO'] = self.fifo
         os.environ['QUTE_CONFIG_DIR'] = 'testdir'

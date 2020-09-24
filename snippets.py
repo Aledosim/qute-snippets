@@ -53,7 +53,7 @@ def qute_show_message(message):
 def set_text(key, text):
     log.debug('set_text input: '+str((key, text)))
     # Saves a json on save_dir directory with text associated with key
-    _file = '{}/{}'.format(SAVE_DIR, 'qute-snippets.json')
+    _file = '{}/{}'.format(SAVE_DIR, 'snippets.json')
     try:
         with open(_file, 'x') as file:
             json.dump({key: text}, file)
@@ -71,10 +71,10 @@ def set_text(key, text):
 
 def get_text(key):
     log.debug('get_text input: '+str(key))
-    _file = '{}/{}'.format(SAVE_DIR, 'qute-snippets.json')
-    # test if _file exists
-    with open(_file) as file:
-        registers = json.load(file)
+    json_file = '{}/{}'.format(SAVE_DIR, 'snippets.json')
+    # test if json_file exists
+    with open(json_file) as snippets:
+        registers = json.load(snippets)
 
     return registers[key]
 
@@ -82,21 +82,16 @@ def get_text(key):
 def main(arguments):
     params = arguments.params
     if len(params) == 2:  # implicit set
-        # print('implicit set case')
         set_text(params[0], params[1])
     elif arguments.get:  # explicit get
-        # print('explicit get case')
         text = get_text(params[0])
         qute_paste_text(text)
     elif len(params) == 2 and arguments.set:  # explicit set
-        # print('explicit set case')
         set_text(params[0], params[1])
     elif len(params) == 1 and not arguments.set:  # implicit get
-        # print('implicit get case')
         text = get_text(params[0])
         qute_paste_text(text)
-    else:  # wrong usage
-        # print('wrong usage case')
+    else:  # wrong usage or help
         log.debug('Invalid arguments')
         argument_parser.print_help()
 
@@ -105,3 +100,4 @@ if __name__ == '__main__':
     args = argument_parser.parse_args()
     log.debug('args: '+str(args))
     main(args)
+
