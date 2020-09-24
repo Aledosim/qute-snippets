@@ -1,13 +1,12 @@
 import logging
 log = logging.getLogger(__name__)
 log.setLevel('DEBUG')
-log.addHandler(logging.FileHandler('register.log'))
+log.addHandler(logging.FileHandler('test_qute-snippets.log'))
 
 import json
 import subprocess
 import os
 from unittest import TestCase, skip
-
 
 from snippets import get_text, set_text, qute_paste_text, qute_show_message
 
