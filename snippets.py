@@ -9,7 +9,7 @@ import logging
 log = logging.getLogger(__name__)
 log.setLevel('DEBUG')
 
-############# Uncomment this line for debug log
+### Uncomment this line for debug log
 #log.addHandler(logging.FileHandler('qute-snippets.log'))
 
 from datetime import datetime
@@ -26,7 +26,7 @@ if not SAVE_DIR: SAVE_DIR = 'testdir'
 
 log.debug('SAVE_DIR: '+str(SAVE_DIR))
 
-USAGE="""snippets.py [-h] [--set | --get] params
+USAGE = """snippets.py [-h] [--set | --get] params
 
 This script save some text snippet to a keyword and paste it back when called with the same keyword.
 It's meant to be used with qutebrowser (see https://qutebrowser.org/).
@@ -48,10 +48,12 @@ I suggest that you make the following keybinds:
    To paste a snippet, i.e.:
       :bind --mode insert <Ctrl+1> spawn --userscript snippets.py --get 1"""
 
-EPILOG="""The snippets are saved on a json in the qutebrowser's configuration folder. For debug log, uncomment the respective line in source."""
+EPILOG = """The snippets are saved on a json in the qutebrowser's configuration folder.
+For debug log, uncomment the respective line in source."""
 
 argument_parser = argparse.ArgumentParser(usage=USAGE, epilog=EPILOG)
-argument_parser.add_argument('params', nargs='+', help='<keyword> <text> to use set option or <keyword> to use get option')
+argument_parser.add_argument('params', nargs='+', help='<keyword> <text> to use set option or\
+                                                        <keyword> to use get option')
 group = argument_parser.add_mutually_exclusive_group()
 group.add_argument('--set', '-s', action='store_true', help='set a text to a certain keyword')
 group.add_argument('--get', '-g', action='store_true', help='get a text saved to a keyword')
@@ -130,4 +132,3 @@ if __name__ == '__main__':
     args = argument_parser.parse_args()
     log.debug('args: '+str(args))
     main(args)
-
