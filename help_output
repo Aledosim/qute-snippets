@@ -28,4 +28,4 @@ optional arguments:
   --set, -s   set a text to a certain keyword
   --get, -g   get a text saved to a keyword
 
-The snippets are saved on a json in the qutebrowser's configuration folder. For debugging uncomment the respective line in source.
+The snippets are saved on a json in the qutebrowser's configuration folder. For debug log, uncomment the respective line in source.
