@@ -1,0 +1,31 @@
+usage: snippets.py [-h] [--set | --get] params
+
+This script save some text snippet to a keyword and paste it back when called with the same keyword. It's meant to be used with qutebrowser (see https://qutebrowser.org/).
+
+   To save a snippet to a certain keyword:
+      snippets.py --set <keyword> <text>
+
+   To paste a snippet bindded to a certain keyword:
+      snippets.py --get <keyword>
+
+   To use it with qutebrowser:
+      :spawn --userscript snippets.py [--set | --get] params
+
+I suggest that you make the following keybinds:
+
+   To save a snippet, i.e.:
+      :bind --mode insert <Ctrl+Alt+1> spawn --userscript snippets.py --set 1 {primary}
+
+   To paste a snippet, i.e.:
+      :bind --mode insert <Ctrl+1> spawn --userscript snippets.py --get 1
+
+positional arguments:
+  params      <keyword> <text> for set option
+              <keyword> for get option
+
+optional arguments:
+  -h, --help  show this help message and exit
+  --set, -s   set a text to a certain keyword
+  --get, -g   get a text saved to a keyword
+
+The snippets are saved on a json in the qutebrowser's configuration folder.
