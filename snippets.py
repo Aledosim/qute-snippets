@@ -42,7 +42,7 @@ SAVE_DIR = os.getenv('QUTE_CONFIG_DIR')
 if not SAVE_DIR: SAVE_DIR = 'testdir'
 log.debug('SAVE_DIR: '+str(SAVE_DIR))
 
-JSON_FILE = '{}/{}'.format(SAVE_DIR, 'snippets.json')
+JSON_FILE = os.path.join(SAVE_DIR, 'snippets.json')
 
 USAGE = """snippets.py [-h] [--set | --get] params
 
