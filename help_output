@@ -6,7 +6,7 @@ It's meant to be used with qutebrowser (see https://qutebrowser.org/).
    To save a snippet to a certain keyword:
       snippets.py --set <keyword> <text>
 
-   To paste a snippet bindded to a certain keyword:
+   To paste a snippet binded to a certain keyword:
       snippets.py --get <keyword>
 
    To use it with qutebrowser:
