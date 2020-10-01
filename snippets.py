@@ -93,7 +93,6 @@ def qute_show_message(message):
     cmd = 'message-info "{}"\n'.format(message)
     with open(os.environ['QUTE_FIFO'], 'w') as fifo:
         fifo.write(cmd)
-        fifo.flush()
 
 
 def set_text(key, text):
