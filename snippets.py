@@ -101,17 +101,16 @@ def set_text(key, text):
     log.debug('set_text input: '+str((key, text)))
 
     try:
-        with open(JSON_FILE, 'x') as snippets:
-            json.dump({key: text}, snippets)
-
-    except FileExistsError:
-        with open(JSON_FILE) as snippets:
+        with open(JSON_FILE, 'r+') as snippets:
             saved = json.load(snippets)
-
-        saved[key] = text
-
-        with open(JSON_FILE, 'w') as snippets:
+            saved[key] = text
+            snippets.seek(0)
+            snippets.truncate()
             json.dump(saved, snippets)
+
+    except FileNotFoundError:
+        with open(JSON_FILE, 'w') as snippets:
+            json.dump({key: text}, snippets)
 
     qute_show_message('Text saved on key {}'.format(key))
 
