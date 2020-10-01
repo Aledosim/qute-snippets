@@ -26,7 +26,7 @@ log.setLevel('DEBUG')
 
 # --------------------------------------------------------
 # Uncomment this line for debug log
-#log.addHandler(logging.FileHandler('qute-snippets.log'))
+log.addHandler(logging.FileHandler('qute-snippets.log'))
 # --------------------------------------------------------
 
 from datetime import datetime
@@ -40,8 +40,9 @@ SAVE_DIR = os.getenv('QUTE_CONFIG_DIR')
 
 # for test purposes
 if not SAVE_DIR: SAVE_DIR = 'testdir'
-
 log.debug('SAVE_DIR: '+str(SAVE_DIR))
+
+JSON_FILE = '{}/{}'.format(SAVE_DIR, 'snippets.json')
 
 USAGE = """snippets.py [-h] [--set | --get] params
 
@@ -99,18 +100,17 @@ def set_text(key, text):
     # Saves a json on SAVE_DIR directory with text associated with key
     log.debug('set_text input: '+str((key, text)))
 
-    json_file = '{}/{}'.format(SAVE_DIR, 'snippets.json')
     try:
-        with open(json_file, 'x') as snippets:
+        with open(JSON_FILE, 'x') as snippets:
             json.dump({key: text}, snippets)
 
     except FileExistsError:
-        with open(json_file) as snippets:
+        with open(JSON_FILE) as snippets:
             saved = json.load(snippets)
 
         saved[key] = text
 
-        with open(json_file, 'w') as snippets:
+        with open(JSON_FILE, 'w') as snippets:
             json.dump(saved, snippets)
 
     qute_show_message('Text saved on key {}'.format(key))
@@ -120,8 +120,7 @@ def get_text(key):
     # Retrieves text from json saved on SAVE_DIR with key
     log.debug('get_text input: '+str(key))
 
-    json_file = '{}/{}'.format(SAVE_DIR, 'snippets.json')
-    with open(json_file) as snippets:
+    with open(JSON_FILE) as snippets:
         registers = json.load(snippets)
 
     return registers[key]
