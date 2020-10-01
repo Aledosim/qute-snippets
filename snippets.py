@@ -91,7 +91,7 @@ def qute_show_message(message):
     log.debug('qute_show_message input: '+str(message))
 
     cmd = 'message-info "{}"\n'.format(message)
-    with open(os.environ['QUTE_FIFO'], 'w') as fifo:
+    with open(os.environ['QUTE_FIFO'], 'a') as fifo:
         fifo.write(cmd)
 
 
