@@ -1,7 +1,7 @@
 import logging
 log = logging.getLogger(__name__)
 log.setLevel('DEBUG')
-log.addHandler(logging.FileHandler('test_qute-snippets.log'))
+log.addHandler(logging.FileHandler('test_qute-snippets.log', 'w'))
 
 import json
 import subprocess
