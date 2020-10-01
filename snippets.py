@@ -26,7 +26,7 @@ log.setLevel('DEBUG')
 
 # --------------------------------------------------------
 # Uncomment this line for debug log
-log.addHandler(logging.FileHandler('qute-snippets.log'))
+#log.addHandler(logging.FileHandler('qute-snippets.log'))
 # --------------------------------------------------------
 
 from datetime import datetime
@@ -60,10 +60,10 @@ It's meant to be used with qutebrowser (see https://qutebrowser.org/).
 
 I suggest that you make the following keybinds:
 
-   To save a snippet, i.e.:
+   To save a snippet, e.g.:
       :bind --mode insert <Ctrl+Alt+1> spawn --userscript snippets.py --set 1 {primary}
 
-   To paste a snippet, i.e.:
+   To paste a snippet, e.g.:
       :bind --mode insert <Ctrl+1> spawn --userscript snippets.py --get 1"""
 
 EPILOG = """The snippets are saved on a json in the qutebrowser's configuration folder.

@@ -14,18 +14,18 @@ To save a snippet to a certain keyword run:
 To paste a snippet binded to a certain keyword:
 
     snippets.py --get <keyword>
-On qutebrowser you should run, i.e:
+On qutebrowser you should run, e.g.:
 
     :spawn --userscript snippets.py --set 3 "Test text"
     :spawn --userscript snippets.py --get 3
 ### Keybinding suggestion
 I suggest that you make the following numeric keybindings:
 
-To save a snippet, i.e.:
+To save a snippet, e.g.:
 
     :bind --mode insert <Ctrl+Alt+1> spawn --userscript snippets.py --set 1 {primary}
 
-To paste a snippet, i.e.:
+To paste a snippet, e.g.:
 
     :bind --mode insert <Ctrl+1> spawn --userscript snippets.py --get 1
 _See qutebrowser's [help on keybinding](https://github.com/qutebrowser/qutebrowser/blob/master/doc/help/commands.asciidoc#bind) for more information._ 
