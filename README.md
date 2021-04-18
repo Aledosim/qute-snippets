@@ -1,5 +1,6 @@
 # qute-snippets
 > Save some text to easily retrieve it when you need it
+<img src="https://raw.githubusercontent.com/Aledosim/qute-snippets/5206d00d31406b5d77862bf232bbeb96f3d55007/.github/coverage.svg" />
 
 This script save some text snippet to a keyword and paste it back when called with the same keyword.
 It's meant to be used with [qutebrowser](https://qutebrowser.org/).
