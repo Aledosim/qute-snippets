@@ -7,16 +7,37 @@ jobs:
             - uses: actions/checkout@v2
               with: 
                 fetch-depth: 0
-                
+
+            - name: Install packages
+              run: |
+                  apt update && apt install -y python3-pip
+                  pip3 install -U coverage coverage-badge
+
             - name: Coverage Badge
-              uses: tj-actions/coverage-badge-py@v1.2
-                  
+              run: |
+                  coverage run -m unittest
+                  coverage-badge -f -o ".github/coverage.svg"                
+
             - name: Verify Changed files
               uses: tj-actions/verify-changed-files@v6
               id: changed_files
               with:
-                  files: coverage.svg
-                  
+                  files: .github/coverage.svg
+
+            - name: Commit files
+              if: steps.changed_files.outputs.files_changed == 'true'
+              run: |
+                  git config --local user.email "github-actions[bot]@users.noreply.github.com"
+                  git config --local user.name "github-actions[bot]"
+                  git add coverage.svg
+                  git commit -m "Updated coverage.svg"
+
+            - name: Push changes
+              if: steps.changed_files.outputs.files_changed == 'true'
+              uses: ad-m/github-push-action@master
+              with:
+                  github_token: ${{ secrets.github_token }}
+                  branch: ${{ github.ref }}
             - name: Commit files
               if: steps.changed_files.outputs.files_changed == 'true'
               run: |
