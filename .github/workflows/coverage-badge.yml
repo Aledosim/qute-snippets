@@ -8,29 +8,33 @@ jobs:
               with: 
                 fetch-depth: 0
 
-            - name: Install packages
-              run: |
-                  apt update && apt install -y python3-pip
-                  pip3 install -U coverage coverage-badge
+            - name: Pip Installer
+              uses: BSFishy/pip-action@v1
+              with:
+                packages: |
+                    coverage
+                    coverage-badge
 
             - name: Coverage Badge
               run: |
                   coverage run -m unittest
-                  coverage-badge -f -o ".github/coverage.svg"                
+                  coverate html -d .github/coverage
+                  coverage-badge -f -o ".github/coverage/badge.svg"                
 
             - name: Verify Changed files
               uses: tj-actions/verify-changed-files@v6
               id: changed_files
               with:
-                  files: .github/coverage.svg
+                  files: |
+                    .github/coverage/
 
             - name: Commit files
               if: steps.changed_files.outputs.files_changed == 'true'
               run: |
                   git config --local user.email "github-actions[bot]@users.noreply.github.com"
                   git config --local user.name "github-actions[bot]"
-                  git add .github/coverage.svg
-                  git commit -m "Updated coverage.svg"
+                  git add .github/coverage/
+                  git commit -m "Updated coverage"
 
             - name: Push changes
               if: steps.changed_files.outputs.files_changed == 'true'
