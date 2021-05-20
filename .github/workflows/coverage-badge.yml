@@ -18,7 +18,7 @@ jobs:
             - name: Coverage Badge
               run: |
                   coverage run -m unittest
-                  coverate html -d .github/coverage
+                  coverage html -d .github/coverage
                   coverage-badge -f -o ".github/coverage/badge.svg"                
 
             - name: Verify Changed files
