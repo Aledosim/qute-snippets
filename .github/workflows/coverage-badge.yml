@@ -18,22 +18,24 @@ jobs:
             - name: Coverage Badge
               run: |
                   coverage run -m unittest
-                  coverage html -d .github/coverage
-                  coverage-badge -f -o ".github/coverage/badge.svg"                
+                  coverage report >> .github/coverage.txt
+                  coverage-badge -f -o .github/coverage.svg
 
             - name: Verify Changed files
               uses: tj-actions/verify-changed-files@v6
               id: changed_files
               with:
                   files: |
-                    .github/coverage/
+                    .github/coverage.txt
+                    .github/coverage.svg
 
             - name: Commit files
               if: steps.changed_files.outputs.files_changed == 'true'
               run: |
                   git config --local user.email "github-actions[bot]@users.noreply.github.com"
                   git config --local user.name "github-actions[bot]"
-                  git add .github/coverage/
+                  git add .github/coverage.txt
+                  git add .github/coverage.svg
                   git commit -m "Updated coverage"
 
             - name: Push changes
