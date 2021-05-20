@@ -1,6 +1,9 @@
 # qute-snippets
+
+[![Coverage][coverage-shield]][coverage-url]
+[![GPL3 License][license-shield]][license-url]
+
 > Save some text to easily retrieve it when you need it
-<img src="https://raw.githubusercontent.com/Aledosim/qute-snippets/5206d00d31406b5d77862bf232bbeb96f3d55007/.github/coverage.svg" />
 
 This script save some text snippet to a keyword and paste it back when called with the same keyword.
 It's meant to be used with [qutebrowser](https://qutebrowser.org/).
@@ -38,3 +41,8 @@ Alexandre Sim – [Alexandre do Sim](https://www.linkedin.com/in/alexandre-do-si
 Distributed under the GPL3 license. See `LICENSE` for more information.
 
 [https://github.com/Aledosim](https://github.com/Aledosim)
+
+[license-shield]: https://img.shields.io/badge/license-GPL3-green
+[license-url]: https://raw.githubusercontent.com/Aledosim/qute-snippets/master/LICENSE
+[coverage-shield]: https://raw.githubusercontent.com/Aledosim/qute-snippets/master/.github/coverage.svg
+[coverage-url]: https://raw.githubusercontent.com/Aledosim/qute-snippets/master/.github/coverage.txt
