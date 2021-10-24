@@ -36,7 +36,7 @@ _See qutebrowser's [help on keybinding](https://github.com/qutebrowser/qutebrows
 ## Debug log
 You can activate debug log uncommenting the marked line in source code.
 ## Author
-Alexandre Sim – [Alexandre do Sim](https://www.linkedin.com/in/alexandre-do-sim/) – aledosim@yahoo.com.br
+Alexandre do Sim – [LinkedIn](https://www.linkedin.com/in/alexandre-do-sim/) – aledosim@yahoo.com.br
 
 Distributed under the GPL3 license. See `LICENSE` for more information.
 
